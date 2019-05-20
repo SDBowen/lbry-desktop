@@ -1,15 +1,21 @@
+.nav__link {
+  margin-bottom: var(--spacing-vertical-small);
+  // margin-left: var(--spacing-vertical-medium);
+}
+
 .navigation {
   position: fixed;
   top: var(--header-height);
+  right: 0;
   height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   overflow: visible;
-  background-color: $lbry-white;
-  border-right: 1px solid rgba($lbry-gray-1, 0.9);
-  padding-top: var(--spacing-vertical-large);
-  padding-right: var(--spacing-vertical-small);
-  font-size: 1.2rem;
+  background-color: #f6f7f8;
+  // border-right: 1px solid rgba($lbry-gray-1, 0.9);
+  padding-top: 4rem;
+  // padding-right: 2rem;
+  font-size: 1.4rem;
   z-index: 2;
 
   html[data-mode='dark'] & {
@@ -35,39 +41,49 @@
     right: 0;
 
     // TODO: Make this gradient "to bottom" on mobile view
-    background-image: linear-gradient(to right, transparent, rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%);
+    // background-image: linear-gradient(to right, transparent, rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%);
     content: '';
     position: absolute;
 
     html[data-mode='dark'] & {
-      background-image: linear-gradient(
-        to bottom right,
-        transparent,
-        rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%
-      );
+      // background-image: linear-gradient(
+      //   to bottom right,
+      //   transparent,
+      //   rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%
+      // );
     }
   }
 }
 
 .navigation__links {
   position: relative;
+  margin-bottom: var(--spacing-vertical-large);
 }
 
 .navigation__links--bottom {
   margin-top: auto;
   margin-bottom: var(--spacing-vertical-large);
+  font-size: 1.2rem;
 }
 
 .navigation__link {
+  // font-weight: 600;
   display: block;
   line-height: 1.75;
-  padding-left: var(--spacing-vertical-large);
+  // padding-left: var(--spacing-vertical-large);
   position: relative;
   text-align: left;
   transition: color 0.2s;
   white-space: nowrap;
   width: 100%;
-  color: $lbry-gray-5;
+  color: lighten($lbry-black, 20%);
+  cursor: pointer;
+
+  &.navigation__link--tag {
+    &::before {
+      background-color: $lbry-indigo-3;
+    }
+  }
 
   &::before {
     top: 0;
@@ -108,14 +124,12 @@
 
 .navigation__link--title {
   margin-bottom: var(--spacing-vertical-small);
-  padding-top: var(--spacing-vertical-large);
 
   color: $lbry-gray-5;
   cursor: default;
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
-  text-transform: uppercase;
 }
 
 .navigation__link-items {

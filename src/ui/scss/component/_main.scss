@@ -1,7 +1,7 @@
 .main-wrapper {
   position: absolute;
   top: var(--header-height);
-  min-height: calc(100% - var(--header-height));
+  // min-height: calc(100% - var(--header-height));
   width: 100%;
   background-color: mix($lbry-white, $lbry-gray-1, 70%);
 
@@ -10,7 +10,7 @@
   }
 
   @media (min-width: 600px) {
-    left: var(--side-nav-width);
+    // left: var(--side-nav-width);
     width: calc(100% - var(--side-nav-width));
   }
 }
@@ -18,16 +18,20 @@
 .main {
   display: flex;
   flex-direction: column;
-  margin: auto;
+
+  margin: var(--spacing-main-padding);
+  margin-top: 0;
 }
 
 .main--contained {
-  max-width: 900px;
+  max-width: 1280px;
   padding: var(--spacing-main-padding);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .main--not-contained {
-  padding: var(--spacing-main-padding);
+  // padding: var(--spacing-main-padding);
 }
 
 .main--no-padding {

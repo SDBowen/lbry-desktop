@@ -1,5 +1,12 @@
 import { connect } from 'react-redux';
-import { selectUnfollowedTags, selectFollowedTags, doToggleTagFollow, doAddTag, doDeleteTag } from 'lbry-redux';
+import {
+  selectUnfollowedTags,
+  selectFollowedTags,
+  doReplaceTags,
+  doToggleTagFollow,
+  doAddTag,
+  doDeleteTag,
+} from 'lbry-redux';
 import DiscoveryFirstRun from './view';
 
 const select = (state, props) => ({
@@ -13,5 +20,6 @@ export default connect(
     doToggleTagFollow,
     doAddTag,
     doDeleteTag,
+    doReplaceTags,
   }
 )(DiscoveryFirstRun);

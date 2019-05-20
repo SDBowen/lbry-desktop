@@ -1,7 +1,6 @@
 .tags {
   margin-bottom: var(--spacing-vertical-medium) 0;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .tags--selected {
@@ -13,48 +12,40 @@
 }
 
 .tag {
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: var(--spacing-vertical-small);
-  margin-right: var(--spacing-vertical-small);
-  padding-left: 1rem;
+  margin: var(--spacing-vertical-small);
+  margin-right: var(--spacing-vertical-medium);
+  margin-left: 0;
+  padding: 0 1rem;
   font-size: 1.1rem;
   line-height: 2;
   cursor: pointer;
-  background-color: $lbry-white;
   border-radius: 1.5rem;
-  border: 1px solid rgba($lbry-indigo-3, 0.5);
-  transition: all 0.2s;
-
-  &:not(:last-of-type) {
-    margin-right: var(--spacing-s);
-  }
+  border: none;
+  user-select: none;
+  box-shadow: 0 0 0 1px rgba($lbry-indigo-3, 0.25);
 
   &:hover {
     background-color: $lbry-indigo-3;
     color: $lbry-white;
-    border-color: $lbry-gray-1;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 4px var(--color-focus);
   }
 
   &:active {
-    box-shadow: 0 0 0 4px $lbry-indigo-3;
+    background-color: $lbry-indigo-5;
   }
 }
 
 .tag--selected {
   background-color: $lbry-indigo-3;
   color: $lbry-white;
-  border: none;
+  box-shadow: 0 0 0 4px rgba($lbry-indigo-3, 0.25);
+  margin-left: 4px;
 
   &:hover {
-    background-color: $lbry-white;
-    color: $lbry-black;
-    box-shadow: 0 0 0 4px rgba($lbry-red-3, 0.25);
+    background-color: $lbry-indigo-4;
   }
 }
 
@@ -62,7 +53,6 @@
   border-left: 1px solid rgba($lbry-black, 0.1);
   display: inline-block;
   margin-left: 0.5rem;
-  padding-right: 0.75rem;
   padding-left: 0.5rem;
 
   html[data-mode='dark'] & {

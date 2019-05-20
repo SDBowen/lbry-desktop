@@ -65,7 +65,7 @@ const Header = (props: Props) => {
 
       <WunderBar />
 
-      <div className="header__navigation">
+      <div className="header__navigation right-sdide">
         <Button
           className="header__navigation-item header__navigation-item--menu"
           description={__('Menu')}
@@ -76,6 +76,13 @@ const Header = (props: Props) => {
         <Button
           className="header__navigation-item header__navigation-item--right-action"
           activeClass="header__navigation-item--active"
+          label={__('Account')}
+          icon={ICONS.ACCOUNT}
+          navigate="/$/account"
+        />
+        {/* <Button
+          className="header__navigation-item header__navigation-item--right-action"
+          activeClass="header__navigation-item--active"
           description={__('Your wallet')}
           title={`Your balance is ${balance} LBRY Credits`}
           label={
@@ -84,7 +91,7 @@ const Header = (props: Props) => {
             </React.Fragment>
           }
           navigate="/$/account"
-        />
+        /> */}
 
         <Button
           className="header__navigation-item header__navigation-item--right-action"

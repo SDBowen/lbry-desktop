@@ -13,7 +13,7 @@ type Props = {
 
 class SideBar extends React.PureComponent<Props> {
   render() {
-    const { unreadSubscriptionTotal, shouldShowInviteGuide } = this.props;
+    const { unreadSubscriptionTotal, shouldShowInviteGuide, followedTags } = this.props;
     const buildLink = (path, label, icon, guide) => ({
       navigate: path ? `$/${path}` : '/',
       label,
@@ -49,7 +49,7 @@ class SideBar extends React.PureComponent<Props> {
 
     return (
       <nav className="navigation">
-        <ul className="navigation__links">
+        {/* <ul className="navigation__links">
           {[
             {
               ...buildLink(null, __('Discover'), ICONS.DISCOVER),
@@ -68,34 +68,45 @@ class SideBar extends React.PureComponent<Props> {
               ...buildLink(PAGES.HISTORY, __('Library'), ICONS.DOWNLOAD),
             },
           ].map(renderLink)}
-        </ul>
-        <div className="navigation__link navigation__link--title">Account</div>
+        </ul> */}
+        {/* <div className="navigation__link navigation__link--title">Account</div> */}
 
-        <ul className="navigation__links">
+        {/* <ul className="navigation__links">
           {[
-            {
-              ...buildLink(PAGES.ACCOUNT, __('Overview'), ICONS.ACCOUNT),
-            },
-            {
-              ...buildLink(PAGES.INVITE, __('Invite'), ICONS.INVITE, shouldShowInviteGuide && __('Check this out!')),
-            },
-            {
-              ...buildLink(PAGES.REWARDS, __('Rewards'), ICONS.FEATURED),
-            },
-            {
-              ...buildLink(PAGES.SEND, __('Send & Recieve'), ICONS.SEND),
-            },
-            {
-              ...buildLink(PAGES.TRANSACTIONS, __('Transactions'), ICONS.TRANSACTIONS),
-            },
-            {
-              ...buildLink(PAGES.SETTINGS, __('Settings'), ICONS.SETTINGS),
-            },
+            // {
+            //   ...buildLink(PAGES.INVITE, __('Invite'), ICONS.INVITE, shouldShowInviteGuide && __('Check this out!')),
+            // },
+            // {
+            //   ...buildLink(PAGES.REWARDS, __('Rewards'), ICONS.FEATURED),
+            // },
+            // {
+            //   ...buildLink(PAGES.SEND, __('Send & Recieve'), ICONS.SEND),
+            // },
+            // {
+            //   ...buildLink(PAGES.TRANSACTIONS, __('Transactions'), ICONS.TRANSACTIONS),
+            // },
           ].map(renderLink)}
+        </ul> */}
+
+        <div className="navigation__link navigation__link--title">Following</div>
+        <ul className="navigation__links">
+          {followedTags.map(({ name }) => (
+            <li className="navigation__link">{name}</li>
+          ))}
+        </ul>
+
+        <div className="navigation__link navigation__link--title">Subscriptions</div>
+        <ul className="navigation__links">
+          {['@veritasium (1)', '@bitcoinandfriends (3)'].map(name => (
+            <li className="navigation__link">{name}</li>
+          ))}
         </ul>
 
         <ul className="navigation__links navigation__links--bottom">
           {[
+            {
+              ...buildLink(PAGES.SETTINGS, __('Settings'), ICONS.SETTINGS),
+            },
             {
               ...buildLink(PAGES.HELP, __('Help'), ICONS.HELP),
             },
