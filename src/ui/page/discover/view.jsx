@@ -16,7 +16,7 @@ type Props = {
 
 function DiscoverPage(props) {
   const { doFetchTrending, trending } = props;
-  const [layout, setLayout] = useState('card');
+  const [layout, setLayout] = useState('list');
   // TODO: put this somewhere outside of discoverPage component
   // it doesn't need to live here, it's unrelated
   // const { fetchRewardedContent, fetchRewards } = props;
@@ -37,7 +37,7 @@ function DiscoverPage(props) {
               <option value="new">New</option>
             </FormField>
           </Form>
-          <Button icon="Layout" iconOnly onClick={() => setLayout(layout === 'card' ? 'list' : 'card')} />
+          <Button icon="Layout" onClick={() => setLayout(layout === 'card' ? 'list' : 'card')} />
         </h1>
         <ul className={layout === 'card' ? 'card__list' : ''}>
           {!!trending.length && trending.map(uri => <FileListItem key={uri} uri={uri} layout={layout} />)}
