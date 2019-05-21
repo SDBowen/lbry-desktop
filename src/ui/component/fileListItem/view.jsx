@@ -118,7 +118,7 @@ function FileListItem(props) {
     >
       <CardMedia thumbnail={thumbnail} />
       <div className="list-item__info">
-        <div className="media__title">
+        <div className="media__title" style={{ maxWidth: 400 }}>
           <TruncatedText text={title} lines={2} />
         </div>
         <div className="media__subtitle">
@@ -128,7 +128,21 @@ function FileListItem(props) {
           </div>
         </div>
       </div>
-      <FileProperties uri={uri} />
+      <div style={{ flex: 1 }}>
+        <div style={{ width: '100%' }}>
+          <FileProperties uri={uri} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 10, right: 10 }}>
+          <div className="media-properties">
+            {['Bitcoin', 'LBRY', 'Science', 'History', 'Movie'].map(tag => {
+              if (Math.random() > 0.71) {
+                return <span className="badge">{tag}</span>;
+              }
+              return null;
+            })}
+          </div>
+        </div>
+      </div>
     </li>
   );
 }

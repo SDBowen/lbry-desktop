@@ -4,6 +4,7 @@ import Page from 'component/page';
 import Button from 'component/button';
 import { Form, FormField } from 'component/common/form';
 import FileListItem from 'component/fileListItem';
+import FileCard from 'component/fileCard';
 import TagsSelect from 'component/tagsSelect';
 
 type Props = {
@@ -12,6 +13,17 @@ type Props = {
   // fetchRewards: () => void,
   // fetchingFeaturedUris: boolean,
   // featuredUris: {},
+};
+
+const usePersistedState = (key, firstTimeDefault) => {
+  const defaultValue = localStorage.getItem(key) || firstTimeDefault;
+  const [value, setValue] = useState(defaultValue);
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
 };
 
 function DiscoverPage(props) {

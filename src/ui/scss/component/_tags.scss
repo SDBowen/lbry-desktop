@@ -11,6 +11,12 @@
   margin-top: var(--spacing-vertical-medium);
 }
 
+.badge {
+  white-space: nowrap;
+  background-color: #e7faff;
+  margin-left: 0.5rem;
+}
+
 .tag {
   display: inline-block;
   overflow: hidden;
