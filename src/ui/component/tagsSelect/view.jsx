@@ -7,6 +7,7 @@ import { animated, useTransition, useSprings, interpolate } from 'react-spring';
 import clamp from 'lodash-es/clamp';
 import swap from 'util/swap-array';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Button from 'component/button';
 
 const unfollowedTagsAnimation = {
   from: {
@@ -102,53 +103,60 @@ export default function TagSelect(props: Props) {
   }
 
   return (
-    <section>
-      <div className="tags--selected">
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable" direction="horizontal">
-            {(provided, snapshot) => (
-              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
-                {followedTags.map((item, index) => (
-                  <Draggable key={item.name} draggableId={item.name} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        className={classNames('tag', 'tag--selected')}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={provided.draggableProps.style}
-                      >
-                        {item.name}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
+    <div className="card card--section">
+      <h2 className="card__title card__title--flex-between">
+        {__('Make This Your Own')}
+        <Button button="inverse" label={__('Close')} />
+      </h2>
+      <p className="card__subtitle">{__('You are already following a couple tags, try searching for a new one.')}</p>
 
-      <Form onSubmit={handleSubmit}>
-        <FormField
-          autoFocus
-          label={__('Tags')}
-          onChange={onChange}
-          placeholder="Search for more tags"
-          type="text"
-          value={newTag}
-        />
-      </Form>
-
-      <div className="tags">
-        {suggestedTransitions.map(({ item, key, props }) => (
-          <animated.div style={props} key={key}>
-            <Tag name={item.name} onClick={() => doToggleTagFollow(item.name)} />
-          </animated.div>
-        ))}
-        {!suggestedTransitions.length && <p className="empty tags__empty-message">No suggested tags</p>}
+      <div className="card__content">
+        {' '}
+        <div className="tags--selected">
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable" direction="horizontal">
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
+                  {followedTags.map((item, index) => (
+                    <Draggable key={item.name} draggableId={item.name} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          className={classNames('tag', 'tag--selected')}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={provided.draggableProps.style}
+                        >
+                          {item.name}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+        <Form onSubmit={handleSubmit}>
+          <FormField
+            autoFocus
+            label={__('Tags')}
+            onChange={onChange}
+            placeholder="Search for more tags"
+            type="text"
+            value={newTag}
+          />
+        </Form>
+        <div className="tags">
+          {suggestedTransitions.map(({ item, key, props }) => (
+            <animated.div style={props} key={key}>
+              <Tag name={item.name} onClick={() => doToggleTagFollow(item.name)} />
+            </animated.div>
+          ))}
+          {!suggestedTransitions.length && <p className="empty tags__empty-message">No suggested tags</p>}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

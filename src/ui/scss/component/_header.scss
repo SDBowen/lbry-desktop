@@ -33,6 +33,7 @@
 
 .header__navigation-arrows {
   display: flex;
+  margin-left: -1rem;
 
   .button__content {
     justify-content: center;
@@ -99,8 +100,18 @@
 }
 
 .header__navigation-item--right-action {
+  &:first-of-type {
+    margin-right: var(--spacing-vertical-xlarge);
+  }
+
+  &:last-of-type {
+    margin-right: var(--spacing-main-padding);
+  }
+
+  margin-right: var(--spacing-vertical-medium);
+
   .button__content {
-    padding: 0 var(--spacing-vertical-large);
+    // padding: 0 var(--spacing-vertical-large);
   }
 }
 

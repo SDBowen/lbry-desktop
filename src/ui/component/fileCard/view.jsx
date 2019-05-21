@@ -85,13 +85,13 @@ class FileCard extends React.PureComponent<Props> {
     }
 
     if (!claim && (!pending || placeholder)) {
+      return null;
       return (
         <li className="media-card media-placeholder">
           <div className="media__thumb placeholder" />
           <div className="media__title placeholder" />
           <div className="media__channel placeholder" />
           <div className="media__date placeholder" />
-          <div className="media__properties" />
         </li>
       );
     }
@@ -140,7 +140,6 @@ class FileCard extends React.PureComponent<Props> {
         </div>
         <div className="media__properties">
           <FilePrice hideFree uri={uri} />
-          {isRewardContent && <Icon iconColor="red" icon={icons.FEATURED} />}
           {isSubscribed && <Icon icon={icons.SUBSCRIPTION} />}
           {claimIsMine && <Icon icon={icons.PUBLISHED} />}
           {!claimIsMine && fileInfo && <Icon icon={icons.DOWNLOAD} />}

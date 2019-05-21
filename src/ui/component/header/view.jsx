@@ -36,12 +36,12 @@ const Header = (props: Props) => {
   return (
     <header className="header">
       <div className="header__navigation">
-        <Button
+        {/* <Button
           className="header__navigation-item header__navigation-item--lbry"
           label={__('LBRY')}
           iconRight={ICONS.LBRY}
           navigate="/"
-        />
+        /> */}
         {/* @if TARGET='app' */}
         <div className="header__navigation-arrows">
           <Button
@@ -76,7 +76,15 @@ const Header = (props: Props) => {
         <Button
           className="header__navigation-item header__navigation-item--right-action"
           activeClass="header__navigation-item--active"
-          label={__('Account')}
+          label={
+            roundedBalance > 0 ? (
+              <React.Fragment>
+                {roundedBalance} <LbcSymbol />
+              </React.Fragment>
+            ) : (
+              __('Account')
+            )
+          }
           icon={ICONS.ACCOUNT}
           navigate="/$/account"
         />
@@ -93,18 +101,17 @@ const Header = (props: Props) => {
           navigate="/$/account"
         /> */}
 
-        <Button
+        {/* <Button
           className="header__navigation-item header__navigation-item--right-action"
           activeClass="header__navigation-item--active"
-          description={__('Publish content')}
+          // description={__('Publish content')}
           icon={ICONS.UPLOAD}
           iconSize={24}
-          label={isUpgradeAvailable ? '' : __('Publish')}
+          // label={isUpgradeAvailable ? '' : __('Publish')}
           navigate="/$/publish"
-        />
+        /> */}
 
         {/* @if TARGET='app' */}
-
         {showUpgradeButton && (
           <Button
             className="header__navigation-item header__navigation-item--right-action header__navigation-item--upgrade"
@@ -115,6 +122,21 @@ const Header = (props: Props) => {
           />
         )}
         {/* @endif */}
+
+        <Button
+          className="header__navigation-item header__navigation-item--right-action"
+          activeClass="header__navigation-item--active"
+          icon={ICONS.SETTINGS}
+          iconSize={24}
+          navigate="/$/settings"
+        />
+        <Button
+          className="header__navigation-item header__navigation-item--right-action"
+          activeClass="header__navigation-item--active"
+          icon={ICONS.HELP}
+          iconSize={24}
+          navigate="/$/help"
+        />
       </div>
     </header>
   );

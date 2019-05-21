@@ -49,11 +49,10 @@ export default function AppRouter() {
         <Route path={`/$/${PAGES.SETTINGS}`} exact component={SettingsPage} />
         <Route path={`/$/${PAGES.SUBSCRIPTIONS}`} exact component={SubscriptionsPage} />
         <Route path={`/$/${PAGES.TRANSACTIONS}`} exact component={TransactionHistoryPage} />
-        <Route path={`/$/${PAGES.HISTORY}`} exact component={UserHistoryPage} />
+        <Route path={`/$/${PAGES.LIBRARY}`} exact component={UserHistoryPage} />
         <Route path={`/$/${PAGES.ACCOUNT}`} exact component={AccountPage} />
         <Route path={`/$/${PAGES.SEND}`} exact component={SendCreditsPage} />
-        <Route path={`/$/${PAGES.HISTORY}`} exact component={UserHistoryPage} />
-        <Route path={`/$/${PAGES.HISTORY}/all`} exact component={NavigationHistory} />
+        <Route path={`/$/${PAGES.LIBRARY}/all`} exact component={NavigationHistory} />
 
         {/* Below need to go at the end to make sure we don't match any of our pages first */}
         <Route path="/:claimName" exact component={ShowPage} />

@@ -49,26 +49,19 @@ class SideBar extends React.PureComponent<Props> {
 
     return (
       <nav className="navigation">
-        {/* <ul className="navigation__links">
+        <ul className="navigation__links">
           {[
             {
-              ...buildLink(null, __('Discover'), ICONS.DISCOVER),
-            },
-            {
-              ...buildLink(
-                PAGES.SUBSCRIPTIONS,
-                `${__('Subscriptions')} ${unreadSubscriptionTotal > 0 ? '(' + unreadSubscriptionTotal + ')' : ''}`,
-                ICONS.SUBSCRIPTION
-              ),
+              ...buildLink(null, __('Home'), ICONS.HOME),
             },
             {
               ...buildLink(PAGES.PUBLISHED, __('Publishes'), ICONS.PUBLISHED),
             },
             {
-              ...buildLink(PAGES.HISTORY, __('Library'), ICONS.DOWNLOAD),
+              ...buildLink(PAGES.LIBRARY, __('Library'), ICONS.DOWNLOAD),
             },
           ].map(renderLink)}
-        </ul> */}
+        </ul>
         {/* <div className="navigation__link navigation__link--title">Account</div> */}
 
         {/* <ul className="navigation__links">
@@ -91,26 +84,19 @@ class SideBar extends React.PureComponent<Props> {
         <div className="navigation__link navigation__link--title">Following</div>
         <ul className="navigation__links">
           {followedTags.map(({ name }) => (
-            <li className="navigation__link">{name}</li>
+            <li key={name} className="navigation__link">
+              {name}
+            </li>
           ))}
         </ul>
 
         <div className="navigation__link navigation__link--title">Subscriptions</div>
         <ul className="navigation__links">
           {['@veritasium (1)', '@bitcoinandfriends (3)'].map(name => (
-            <li className="navigation__link">{name}</li>
+            <li key={name} className="navigation__link">
+              {name}
+            </li>
           ))}
-        </ul>
-
-        <ul className="navigation__links navigation__links--bottom">
-          {[
-            {
-              ...buildLink(PAGES.SETTINGS, __('Settings'), ICONS.SETTINGS),
-            },
-            {
-              ...buildLink(PAGES.HELP, __('Help'), ICONS.HELP),
-            },
-          ].map(renderLink)}
         </ul>
       </nav>
     );
