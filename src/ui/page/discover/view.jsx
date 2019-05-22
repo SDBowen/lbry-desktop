@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Page from 'component/page';
 import Button from 'component/button';
 import { Form, FormField } from 'component/common/form';
-import FileListItem from 'component/fileListItem';
+import FileList from 'component/fileList';
 import FileCard from 'component/fileCard';
 import TagsSelect from 'component/tagsSelect';
+import moment from 'moment';
 
 type Props = {
   // fetchFeaturedUris: () => void,
@@ -15,7 +16,7 @@ type Props = {
   // featuredUris: {},
 };
 
-const usePersistedState = (key, firstTimeDefault) => {
+function usePersistedState(key, firstTimeDefault) {
   const defaultValue = localStorage.getItem(key) || firstTimeDefault;
   const [value, setValue] = useState(defaultValue);
 
@@ -24,38 +25,95 @@ const usePersistedState = (key, firstTimeDefault) => {
   }, [key, value]);
 
   return [value, setValue];
-};
+}
 
 function DiscoverPage(props) {
   const { doFetchTrending, trending } = props;
-  const [layout, setLayout] = useState('list');
+  const [personalSort, setPersonalSort] = usePersistedState('xyz', 'me');
+  const [typeSort, setTypeSort] = usePersistedState('xxx', 'best');
+  const [timeSort, setTimeSort] = usePersistedState('zzz', 'week');
   // TODO: put this somewhere outside of discoverPage component
   // it doesn't need to live here, it's unrelated
   // const { fetchRewardedContent, fetchRewards } = props;
 
   useEffect(() => {
-    doFetchTrending(40);
-  }, []);
+    const options = {};
+    if (typeSort === 'best') {
+      options.order_by = ['trending_global', 'trending_mixed'];
+    } else if (typeSort === 'new') {
+      options.order_by = ['publish_time'];
+    } else if (typeSort === 'top') {
+      options.order_by = ['effective_amount'];
+      if (timeSort !== 'all') {
+        // const time = Math.floor(
+        //   moment()
+        //     .subtract(1, timeSort)
+        //     .unix()
+        // );
+        // options.publish_time = time;
+      }
+    }
+
+    doFetchTrending(10, options);
+  }, [personalSort, typeSort, timeSort]);
 
   return (
     <Page>
-      <div className={layout === 'list' && 'card'}>
-        <h1 className={`card__title--flex  trending-title  ${layout === 'card' ? 'tags-select-card' : ''}`}>
-          {__('Trending For You')}
-          <Form>
-            <FormField type="select" className={'tags-select'} name="trending_sort" defaultValue={'best'}>
-              <option value="best">Best</option>
-              <option value="top">Top</option>
-              <option value="new">New</option>
-            </FormField>
-          </Form>
-          <Button icon="Layout" onClick={() => setLayout(layout === 'card' ? 'list' : 'card')} />
-        </h1>
-        <ul className={layout === 'card' ? 'card__list' : ''}>
-          {!!trending.length && trending.map(uri => <FileListItem key={uri} uri={uri} layout={layout} />)}
-        </ul>
+      <div className="card">
+        <FileList
+          uris={trending}
+          title={'Trending For'}
+          injectedItem={personalSort === 'me' && <TagsSelect />}
+          sort={
+            <React.Fragment>
+              <Form>
+                <FormField
+                  type="select"
+                  name="trending_sort"
+                  value={typeSort}
+                  onChange={e => setTypeSort(e.target.value)}
+                >
+                  <option value="best">Best</option>
+                  <option value="top">Top</option>
+                  <option value="new">New</option>
+                </FormField>
+              </Form>
+              {typeSort === 'top' && (
+                <Form>
+                  <FormField
+                    type="select"
+                    name="trending_time"
+                    value={timeSort}
+                    onChange={e => setTimeSort(e.target.value)}
+                  >
+                    <option value="day">Today</option>
+                    <option value="week">Last Week</option>
+                    <option value="month">Last Month</option>
+                    <option value="year">Last Year</option>
+                    <option value="all">All Time</option>
+                  </FormField>
+                </Form>
+              )}
+            </React.Fragment>
+          }
+          header={
+            <React.Fragment>
+              <h1 className={`card__title--flex`}>{__('Trending For')}</h1>
+              <Form>
+                <FormField
+                  type="select"
+                  name="trending_mefsdfaslkfa"
+                  value={personalSort}
+                  onChange={e => setPersonalSort(e.target.value)}
+                >
+                  <option value="me">You</option>
+                  <option value="all">Everyone</option>
+                </FormField>
+              </Form>
+            </React.Fragment>
+          }
+        />
       </div>
-      {/* <TagsSelect /> */}
     </Page>
   );
 }

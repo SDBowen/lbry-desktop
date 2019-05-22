@@ -103,7 +103,7 @@ export default function TagSelect(props: Props) {
   }
 
   return (
-    <div className="card card--section">
+    <div className="card--section">
       <h2 className="card__title card__title--flex-between">
         {__('Make This Your Own')}
         <Button button="inverse" label={__('Close')} />
@@ -140,7 +140,6 @@ export default function TagSelect(props: Props) {
         </div>
         <Form onSubmit={handleSubmit}>
           <FormField
-            autoFocus
             label={__('Tags')}
             onChange={onChange}
             placeholder="Search for more tags"

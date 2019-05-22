@@ -109,9 +109,7 @@ function FileListItem(props) {
       role="button"
       onClick={onClick}
       onContextMenu={handleContextMenu}
-      className={classnames({
-        'media-card': layout === 'card',
-        'media-list-item': layout !== 'card',
+      className={classnames('file-list__item', {
         'card--link': !pending,
         'media--pending': pending,
       })}
@@ -136,7 +134,11 @@ function FileListItem(props) {
           <div className="media-properties">
             {['Bitcoin', 'LBRY', 'Science', 'History', 'Movie'].map(tag => {
               if (Math.random() > 0.71) {
-                return <span className="badge">{tag}</span>;
+                return (
+                  <span key={tag} className="badge">
+                    {tag}
+                  </span>
+                );
               }
               return null;
             })}
