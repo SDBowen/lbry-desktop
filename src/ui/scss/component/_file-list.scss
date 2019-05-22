@@ -66,6 +66,10 @@
   align-items: flex-end;
   margin-left: auto;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .file-list__item--injected,

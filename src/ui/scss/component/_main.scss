@@ -60,6 +60,13 @@
       'info    related';
   }
 
+  @media (max-width: 600px) {
+    grid-template-areas:
+      'content content'
+      'info    info'
+      'related related';
+  }
+
   .grid-area--content {
     grid-area: content;
   }
@@ -68,7 +75,7 @@
   }
   .grid-area--related {
     grid-area: related;
-    width: 40rem;
+    // width: 40rem;
   }
 }
 
