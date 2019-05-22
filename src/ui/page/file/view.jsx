@@ -176,7 +176,7 @@ class FilePage extends React.Component<Props> {
     return (
       <Page notContained className="main--file-page">
         <div className="grid-area--content">
-          <Button
+          {/* <Button
             className="media__uri"
             button="alt"
             label={uri}
@@ -186,7 +186,7 @@ class FilePage extends React.Component<Props> {
                 message: __('Text copied'),
               });
             }}
-          />
+          /> */}
           {!fileInfo && insufficientCredits && (
             <div className="media__insufficient-credits help--warning">
               {__(

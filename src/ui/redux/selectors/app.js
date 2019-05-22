@@ -129,11 +129,6 @@ export const selectModal = createSelector(
   }
 );
 
-export const selectEnhancedLayout = createSelector(
-  selectState,
-  state => state.enhancedLayout
-);
-
 export const selectSearchOptionsExpanded = createSelector(
   selectState,
   state => state.searchOptionsExpanded

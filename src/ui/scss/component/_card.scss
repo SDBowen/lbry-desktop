@@ -86,11 +86,6 @@
   p:not(:last-child) {
     margin-bottom: var(--spacing-vertical-medium);
   }
-
-  .badge {
-    bottom: -0.15rem;
-    position: relative;
-  }
 }
 
 //  C A R D
@@ -200,6 +195,7 @@
   .badge {
     bottom: -0.12rem;
     position: relative;
+    margin-left: 0;
   }
 
   [data-mode='dark'] & {

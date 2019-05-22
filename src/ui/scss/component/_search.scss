@@ -10,31 +10,6 @@
   }
 }
 
-.search__title {
-  font-size: 3em;
-  align-items: center;
-  cursor: default;
-  display: flex;
-  font-weight: 700;
-  line-height: 1.33;
-  margin-bottom: var(--spacing-vertical-large);
-
-  > * {
-    margin-left: var(--spacing-vertical-small);
-  }
-}
-
-.search__results-section {
-  margin-bottom: var(--spacing-vertical-large);
-  min-height: 200px;
-  position: relative;
-}
-
-.search__options-wrapper {
-  font-size: 1.25em;
-  margin: var(--spacing-vertical-xlarge) 0;
-}
-
 .search__options {
   margin-top: var(--spacing-vertical-large);
 

@@ -150,20 +150,23 @@ class FileList extends React.PureComponent<Props> {
     //     </FormField>
     //   </Form>
     // )}
+
     return (
       <section className="file-list">
         <div className="file-list__header">
           {header}
           <div className="file-list__sort">{sort}</div>
         </div>
-        <ul>
-          {uris.map((uri, index) => (
-            <React.Fragment>
-              <FileListItem key={uri} uri={uri} />
-              {index === 4 && injectedItem && <div className="file-list__injected">{injectedItem}</div>}
-            </React.Fragment>
-          ))}
-        </ul>
+        {uris && (
+          <ul>
+            {uris.map((uri, index) => (
+              <React.Fragment>
+                <FileListItem key={uri} uri={uri} />
+                {index === 4 && injectedItem && <div className="file-list__item--injected">{injectedItem}</div>}
+              </React.Fragment>
+            ))}
+          </ul>
+        )}
       </section>
     );
   }

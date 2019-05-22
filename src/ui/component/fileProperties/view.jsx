@@ -14,27 +14,41 @@ import { formatLbryUriForWeb } from 'util/uri';
 
 type Props = {
   uri: string,
+  downloaded: boolean,
+  claimIsMine: boolean,
+  isSubscribed: boolean,
+  isNew: boolean,
+  rewardedContentClaimIds: Array<string>,
 };
 
 function FileProperties(props: Props) {
-  const { uri, fileInfo, rewardedContentClaimIds, claimIsMine, isSubscribed, isNew } = props;
+  const { uri, downloaded, claimIsMine, rewardedContentClaimIds, isSubscribed, isNew } = props;
 
   const { claimId } = parseURI(uri);
   const isRewardContent = rewardedContentClaimIds.includes(claimId);
 
   return (
-    <div className="media-properties">
-      <div className="media-properties__badges">
+    <React.Fragment>
+      <div className="file-properties">
+        {isSubscribed && <Icon icon={icons.SUBSCRIPTION} />}
+        {!claimIsMine && downloaded && <Icon icon={icons.DOWNLOAD} />}
+        {isRewardContent && <Icon iconColor="red" icon={icons.FEATURED} />}
         {isNew && <span className="badge badge--alert">{__('NEW')}</span>}
         <FilePrice hideFree uri={uri} />
       </div>
-      <div className="media-properties__icons">
-        {isSubscribed && <Icon icon={icons.SUBSCRIPTION} />}
-        {claimIsMine && <Icon icon={icons.PUBLISHED} />}
-        {!claimIsMine && fileInfo && <Icon icon={icons.DOWNLOAD} />}
-        {isRewardContent && <Icon iconColor="red" icon={icons.FEATURED} />}
+      <div className="file-properties">
+        {['Bitcoin', 'LBRY', 'Science', 'History', 'Movie'].map(tag => {
+          if (Math.random() > 0.71) {
+            return (
+              <span key={tag} className="badge badge--tag">
+                {tag}
+              </span>
+            );
+          }
+          return null;
+        })}
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

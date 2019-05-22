@@ -55,6 +55,9 @@ class SideBar extends React.PureComponent<Props> {
               ...buildLink(null, __('Home'), ICONS.HOME),
             },
             {
+              ...buildLink(PAGES.SUBSCRIPTIONS, __('Subscriptions'), ICONS.SUBSCRIPTION),
+            },
+            {
               ...buildLink(PAGES.PUBLISHED, __('Publishes'), ICONS.PUBLISHED),
             },
             {
@@ -92,11 +95,13 @@ class SideBar extends React.PureComponent<Props> {
 
         <div className="navigation__link navigation__link--title">Subscriptions</div>
         <ul className="navigation__links">
-          {['@veritasium (1)', '@bitcoinandfriends (3)'].map(name => (
-            <li key={name} className="navigation__link">
-              {name}
-            </li>
-          ))}
+          {['@veritasium (1)', '@bitcoinandfriends (3)', '@bitcoinandfriendsandmore (120)', '@bitcoinandfriends'].map(
+            name => (
+              <li key={name} className="navigation__link">
+                {name}
+              </li>
+            )
+          )}
         </ul>
       </nav>
     );

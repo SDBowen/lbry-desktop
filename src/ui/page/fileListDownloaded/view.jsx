@@ -21,7 +21,13 @@ class FileListDownloaded extends React.PureComponent<Props> {
       // This should eventually move into /components if we want to keep it this way
       <React.Fragment>
         {hasDownloads ? (
-          <FileList fileInfos={fileInfos} sortBy={sortBy} page={PAGES.DOWNLOADED} />
+          <div className="card">
+            <FileList
+              uris={fileInfos.map(info => `lbry://${info.claim_name}#${info.claim_id}`)}
+              sortBy={sortBy}
+              page={PAGES.DOWNLOADED}
+            />
+          </div>
         ) : (
           <div className="main--empty">
             <section className="card card--section">

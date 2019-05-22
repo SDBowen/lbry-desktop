@@ -1,6 +1,6 @@
 // @flow
 import * as icons from 'constants/icons';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { normalizeURI, convertToShareLink } from 'lbry-redux';
 import CardMedia from 'component/cardMedia';
 import TruncatedText from 'component/common/truncated-text';
@@ -35,38 +35,11 @@ type Props = {
   nsfw: boolean,
 };
 
-// class FileCard extends React.PureComponent<Props> {
-
-//   componentDidMount() {
-//     if (!this.props.preventResolve) {
-//       this.resolve(this.props);
-//     }
-//   }
-
-//   componentDidUpdate() {
-//     if (!this.props.preventResolve) {
-//       this.resolve(this.props);
-//     }
-//   }
-
-//   resolve = (props: Props) => {
-//     const { isResolvingUri, resolveUri, claim, uri, pending } = props;
-
-//     if (!pending && !isResolvingUri && claim === undefined && uri) {
-//       resolveUri(uri);
-//     }
-//   };
-
 function FileListItem(props) {
   const {
-    // claim,
-    // fileInfo,
-    // rewardedContentClaimIds,
     obscureNsfw,
     claimIsMine,
     pending,
-    // isSubscribed,
-    // isNew,
     layout,
     history,
     uri,
@@ -75,48 +48,48 @@ function FileListItem(props) {
     thumbnail,
     title,
     nsfw,
+    resolveUri,
   } = props;
 
   const abandoned = !isResolvingUri && !title && !placeholder;
-
-  if (abandoned) {
-    return null;
-  }
-
-  const shouldHide = !claimIsMine && !pending && obscureNsfw && nsfw;
+  const shouldHide = abandoned || (!claimIsMine && !pending && obscureNsfw && nsfw);
   if (shouldHide) {
     return null;
   }
 
-  const handleContextMenu = event => {
+  function handleContextMenu(e) {
     event.preventDefault();
     event.stopPropagation();
     if (claim) {
       openCopyLinkMenu(convertToShareLink(claim.permanent_url), event);
     }
-  };
+  }
 
-  const onClick = e => {
+  function onClick(e) {
     if (title && !pending) {
       e.stopPropagation();
       history.push(formatLbryUriForWeb(uri));
     }
-  };
+  }
+
+  useEffect(() => {
+    if (!pending && !isResolvingUri && !title && uri) {
+      resolveUri(uri);
+    }
+  }, [pending, isResolvingUri, title, uri, resolveUri]);
 
   return (
     <li
       tabIndex="0"
-      role="button"
+      role="link"
       onClick={onClick}
       onContextMenu={handleContextMenu}
-      className={classnames('file-list__item', {
-        'card--link': !pending,
-        'media--pending': pending,
-      })}
+      className={classnames('file-list__item', {})}
     >
       <CardMedia thumbnail={thumbnail} />
-      <div className="list-item__info">
-        <div className="media__title" style={{ maxWidth: 400 }}>
+
+      <div className="file-list__item-info">
+        <div className="file-list__item-title">
           <TruncatedText text={title} lines={2} />
         </div>
         <div className="media__subtitle">
@@ -126,24 +99,9 @@ function FileListItem(props) {
           </div>
         </div>
       </div>
-      <div style={{ flex: 1 }}>
-        <div style={{ width: '100%' }}>
-          <FileProperties uri={uri} />
-        </div>
-        <div style={{ position: 'absolute', bottom: 10, right: 10 }}>
-          <div className="media-properties">
-            {['Bitcoin', 'LBRY', 'Science', 'History', 'Movie'].map(tag => {
-              if (Math.random() > 0.71) {
-                return (
-                  <span key={tag} className="badge">
-                    {tag}
-                  </span>
-                );
-              }
-              return null;
-            })}
-          </div>
-        </div>
+
+      <div className="file-list__item-properties">
+        <FileProperties uri={uri} />
       </div>
     </li>
   );

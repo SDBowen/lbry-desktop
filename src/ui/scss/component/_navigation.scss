@@ -12,19 +12,9 @@
   flex-direction: column;
   overflow: visible;
   background-color: #f6f7f8;
-  // border-right: 1px solid rgba($lbry-gray-1, 0.9);
-  padding-top: 3rem;
-  // padding-right: 2rem;
+  padding-top: var(--spacing-main-padding);
   font-size: 1.4rem;
   z-index: 2;
-
-  html[data-mode='dark'] & {
-    background-color: $lbry-black;
-    border-right: 1px solid $lbry-black;
-  }
-
-  // The navigation does not need to be visible
-  // on smaller screen widths
 
   @media (min-width: 601px) {
     width: var(--side-nav-width);
@@ -32,26 +22,6 @@
 
   @media (max-width: 600px) {
     display: none;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    // TODO: Make this gradient "to bottom" on mobile view
-    // background-image: linear-gradient(to right, transparent, rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%);
-    content: '';
-    position: absolute;
-
-    html[data-mode='dark'] & {
-      // background-image: linear-gradient(
-      //   to bottom right,
-      //   transparent,
-      //   rgba(mix($lbry-blue-3, $lbry-gray-4, 15%), 0.2) 100%
-      // );
-    }
   }
 }
 
@@ -81,47 +51,9 @@
     color: $lbry-teal-4;
   }
 
-  // &.navigation__link--tag {
-  //   &::before {
-  //     background-color: $lbry-indigo-3;
-  //   }
-  // }
-
-  // &::before {
-  //   top: 0;
-  //   right: 0;
-  //   width: 0;
-  //   background-color: $lbry-teal-3;
-  //   content: '';
-  //   height: 100%;
-  //   position: absolute;
-  //   transition: width 0.2s;
-  // }
-
-  // &:not(.navigation__link--title):hover,
   &.navigation__link--active {
-    color: $lbry-teal-4;
-
-    //   html[data-mode='dark'] & {
-    //     color: $lbry-gray-1;
-    //   }
-
-    //   &::before {
-    //     // width: var(--tab-indicator-size);
-    //   }
+    color: $lbry-teal-5;
   }
-
-  // &.navigation__link--guide:not(:hover) {
-  //   color: rgba($lbry-black, 0.75);
-
-  //   html[data-mode='dark'] & {
-  //     color: rgba($lbry-white, 0.75);
-  //   }
-
-  //   &::before {
-  //     animation: bounce 1.75s infinite;
-  //   }
-  // }
 }
 
 .navigation__link--title {

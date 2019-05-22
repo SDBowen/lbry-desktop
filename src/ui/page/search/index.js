@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { doSearch, selectIsSearching } from 'lbry-redux';
+import { doSearch, selectIsSearching, makeSelectSearchUris, makeSelectQueryWithOptions } from 'lbry-redux';
 import SearchPage from './view';
 
 const select = state => ({
   isSearching: selectIsSearching(state),
+  uris: makeSelectSearchUris(makeSelectQueryWithOptions()(state))(state),
 });
 
 const perform = {

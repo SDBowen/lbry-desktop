@@ -1,3 +1,5 @@
+$main: $lbry-teal-5;
+
 .tags {
   margin-bottom: var(--spacing-vertical-medium) 0;
   display: flex;
@@ -9,12 +11,6 @@
 
 .tags__empty-message {
   margin-top: var(--spacing-vertical-medium);
-}
-
-.badge {
-  white-space: nowrap;
-  background-color: #e7faff;
-  margin-left: 0.5rem;
 }
 
 .tag {
@@ -32,26 +28,27 @@
   border-radius: 1.5rem;
   border: none;
   user-select: none;
-  box-shadow: 0 0 0 1px rgba($lbry-indigo-3, 0.25);
+  box-shadow: 0 0 0 1px rgba($main, 0.25);
 
   &:hover {
-    background-color: $lbry-indigo-3;
+    background-color: $main;
     color: $lbry-white;
   }
 
   &:active {
-    background-color: $lbry-indigo-5;
+    background-color: $main;
   }
 }
 
 .tag--selected {
-  background-color: $lbry-indigo-3;
+  background-color: $main;
+  color: lighten($lbry-black, 10%);
   color: $lbry-white;
-  box-shadow: 0 0 0 4px rgba($lbry-indigo-3, 0.25);
+  box-shadow: 0 0 0 4px rgba($main, 0.25);
   margin-left: 4px;
 
   &:hover {
-    background-color: $lbry-indigo-4;
+    background-color: $main;
   }
 }
 

@@ -33,6 +33,7 @@ class ShowPage extends React.PureComponent<Props> {
       uri &&
       (claim === undefined || (claim && claim.name[0] === '@' && totalPages === undefined))
     ) {
+      debugger;
       resolveUri(uri);
     }
   }

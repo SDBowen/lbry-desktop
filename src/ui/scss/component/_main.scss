@@ -24,10 +24,11 @@
 }
 
 .main--contained {
-  max-width: 1280px;
+  max-width: 900px;
+  margin: auto;
   padding: var(--spacing-vertical-large);
-  padding-left: 0;
-  padding-right: 0;
+  // padding-left: 0;
+  // padding-right: 0;
 }
 
 .main--not-contained {
@@ -67,6 +68,7 @@
   }
   .grid-area--related {
     grid-area: related;
+    width: 40rem;
   }
 }
 
