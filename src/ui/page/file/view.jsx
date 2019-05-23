@@ -174,7 +174,7 @@ class FilePage extends React.Component<Props> {
     const insufficientCredits = !claimIsMine && costInfo && costInfo.cost > balance;
 
     return (
-      <Page notContained className="main--file-page">
+      <Page className="main--file-page">
         <div className="grid-area--content">
           {/* <Button
             className="media__uri"

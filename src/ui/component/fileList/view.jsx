@@ -121,50 +121,23 @@ class FileList extends React.PureComponent<Props> {
   render() {
     const { uris, header, sort, injectedItem } = this.props;
 
-    // const content = [];
-    // if (!fileInfos) {
-    //   return null;
-    // }
-
-    // this.sortFunctions[sortBy](fileInfos).forEach(fileInfo => {
-    //   const { name: claimName, claim_name: claimNameDownloaded, claim_id: claimId, txid, nout, isNew } = fileInfo;
-    //   const uriParams = {};
-
-    //   // This is unfortunate
-    //   // https://github.com/lbryio/lbry/issues/1159
-    //   const name = claimName || claimNameDownloaded;
-    //   uriParams.contentName = name;
-    //   uriParams.claimId = claimId;
-    //   const uri = buildURI(uriParams);
-    //   const outpoint = `${txid}:${nout}`;
-
-    //   // See https://github.com/lbryio/lbry-desktop/issues/1327 for discussion around using outpoint as the key
-    // });
-
-    // {!hideFilter && (
-    //   <Form>
-    //     <FormField label={__('Sort by')} type="select" value={sortBy} onChange={this.handleSortChanged}>
-    //       <option value={SORT_OPTIONS.DATE_NEW}>{__('Newest First')}</option>
-    //       <option value={SORT_OPTIONS.DATE_OLD}>{__('Oldest First')}</option>
-    //       <option value={SORT_OPTIONS.TITLE}>{__('Title')}</option>
-    //     </FormField>
-    //   </Form>
-    // )}
-
     return (
       <section className="file-list">
-        <div className="file-list__header">
-          {header}
-          <div className="file-list__sort">{sort}</div>
-        </div>
+        {(header || sort) && (
+          <div className="file-list__header">
+            {header}
+            <div className="file-list__sort">{sort}</div>
+          </div>
+        )}
         {uris && (
           <ul>
             {uris.map((uri, index) => (
-              <React.Fragment>
-                <FileListItem key={uri} uri={uri} />
+              <React.Fragment key={uri}>
+                <FileListItem uri={uri} />
                 {index === 4 && injectedItem && <div className="file-list__item--injected">{injectedItem}</div>}
               </React.Fragment>
             ))}
+            {!uris && <p>{__('No results. Try adjusting your search settings.')}</p>}
           </ul>
         )}
       </section>

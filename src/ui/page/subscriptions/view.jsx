@@ -77,7 +77,7 @@ export default class SubscriptionsPage extends PureComponent<Props> {
 
     // const index = viewMode === VIEW_ALL ? 0 : 1;
     // const onTabChange = index => (index === 0 ? doSetViewMode(VIEW_ALL) : doSetViewMode(VIEW_LATEST_FIRST));
-
+    console.log('allSubscriptions', allSubscriptions);
     return (
       <Page>
         {/* <Fragment>

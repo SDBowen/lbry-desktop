@@ -3,7 +3,7 @@ import { selectFollowedTags, doFetchTrending, selectTrendingUris } from 'lbry-re
 import DiscoverPage from './view';
 
 const select = state => ({
-  tags: selectFollowedTags(state),
+  myTags: selectFollowedTags(state),
   trending: selectTrendingUris(state),
 });
 

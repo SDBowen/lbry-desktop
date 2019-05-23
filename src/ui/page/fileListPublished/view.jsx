@@ -25,10 +25,7 @@ class FileListPublished extends React.PureComponent<Props> {
         {claims && claims.length ? (
           <FileList
             uris={claims.map(info => `lbry://${info.claim_name}#${info.claim_id}`)}
-            checkPending
-            sortByHeight
-            sortBy={sortBy}
-            page={PAGES.PUBLISHED}
+            header={<p>Add Sort Here</p>}
           />
         ) : (
           <div className="main--empty">

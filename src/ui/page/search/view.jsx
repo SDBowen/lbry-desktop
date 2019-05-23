@@ -2,8 +2,7 @@
 import * as ICONS from 'constants/icons';
 import React, { useEffect, Fragment } from 'react';
 import { isURIValid, normalizeURI, parseURI } from 'lbry-redux';
-import FileTile from 'component/fileTile';
-import ChannelTile from 'component/channelTile';
+import FileListItem from 'component/fileListItem';
 import FileList from 'component/fileList';
 import Page from 'component/page';
 import SearchOptions from 'component/searchOptions';
@@ -44,11 +43,7 @@ export default function SearchPage(props: Props) {
                 <Button button="alt" navigate={uri} className="media__uri">
                   {uri}
                 </Button>
-                {isChannel ? (
-                  <ChannelTile size="large" isSearchResult uri={uri} />
-                ) : (
-                  <FileTile size="large" isSearchResult displayHiddenMessage uri={uri} />
-                )}
+                <FileListItem uri={uri} large />
               </header>
             )}
 

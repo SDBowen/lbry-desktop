@@ -5,15 +5,16 @@ import * as React from 'react';
 import Button from 'component/button';
 import classnames from 'classnames';
 import Tooltip from 'component/common/tooltip';
+import { formatLbryUriForWeb } from 'util/uri';
 
 type Props = {
-  unreadSubscriptionTotal: number,
+  subscriptions: number,
   shouldShowInviteGuide: string,
 };
 
 class SideBar extends React.PureComponent<Props> {
   render() {
-    const { unreadSubscriptionTotal, shouldShowInviteGuide, followedTags } = this.props;
+    const { subscriptions, shouldShowInviteGuide, followedTags } = this.props;
     const buildLink = (path, label, icon, guide) => ({
       navigate: path ? `$/${path}` : '/',
       label,
@@ -95,13 +96,14 @@ class SideBar extends React.PureComponent<Props> {
 
         <div className="navigation__link navigation__link--title">Subscriptions</div>
         <ul className="navigation__links">
-          {['@veritasium (1)', '@bitcoinandfriends (3)', '@bitcoinandfriendsandmore (120)', '@bitcoinandfriends'].map(
-            name => (
-              <li key={name} className="navigation__link">
-                {name}
-              </li>
-            )
-          )}
+          {subscriptions.map(({ uri, channelName }) => (
+            <Button
+              label={channelName}
+              navigate={uri}
+              className="navigation__link"
+              activeClass="navigation__link--active"
+            />
+          ))}
         </ul>
       </nav>
     );

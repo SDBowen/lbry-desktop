@@ -24,8 +24,7 @@ class FileListDownloaded extends React.PureComponent<Props> {
           <div className="card">
             <FileList
               uris={fileInfos.map(info => `lbry://${info.claim_name}#${info.claim_id}`)}
-              sortBy={sortBy}
-              page={PAGES.DOWNLOADED}
+              header={<p>Add Sort Here</p>}
             />
           </div>
         ) : (

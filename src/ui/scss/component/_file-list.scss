@@ -54,8 +54,27 @@
   }
 }
 
+.file-list__item--injected,
+.file-list__item {
+  border-bottom: 1px solid rgba($lbry-teal-5, 0.1);
+}
+
+.file-list__item--large {
+  @include mediaThumbHoverZoom;
+  font-size: 1.6rem;
+  border-bottom: 0;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  .media__thumb {
+    width: 20rem;
+  }
+}
+
 .file-list__item-title {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-weight: 600;
 }
 
@@ -70,11 +89,6 @@
   @media (max-width: 600px) {
     display: none;
   }
-}
-
-.file-list__item--injected,
-.file-list__item {
-  border-bottom: 1px solid rgba($lbry-teal-5, 0.1);
 }
 
 .file-list__sort {

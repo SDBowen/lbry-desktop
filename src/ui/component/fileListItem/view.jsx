@@ -49,13 +49,17 @@ function FileListItem(props) {
     title,
     nsfw,
     resolveUri,
+    claim,
+    large,
   } = props;
 
-  const abandoned = !isResolvingUri && !title && !placeholder;
-  const shouldHide = abandoned || (!claimIsMine && !pending && obscureNsfw && nsfw);
-  if (shouldHide) {
-    return null;
-  }
+  const noClaim = claim === null;
+
+  useEffect(() => {
+    if (!pending && !isResolvingUri && !noClaim && uri) {
+      resolveUri(uri);
+    }
+  }, [pending, isResolvingUri, uri, resolveUri, noClaim]);
 
   function handleContextMenu(e) {
     event.preventDefault();
@@ -72,11 +76,19 @@ function FileListItem(props) {
     }
   }
 
-  useEffect(() => {
-    if (!pending && !isResolvingUri && !title && uri) {
-      resolveUri(uri);
-    }
-  }, [pending, isResolvingUri, title, uri, resolveUri]);
+  const abandoned = !isResolvingUri && !title && !placeholder;
+  const shouldHide = abandoned || (!claimIsMine && !pending && obscureNsfw && nsfw);
+  if (shouldHide) {
+    return null;
+  }
+
+  if (!claim) {
+    // placeholder
+    return null;
+  }
+
+  const isChannel = claim && claim.value_type === 'channel';
+  const claimsInChannel = isChannel ? claim.meta.claims_in_channel : 0;
 
   return (
     <li
@@ -84,7 +96,9 @@ function FileListItem(props) {
       role="link"
       onClick={onClick}
       onContextMenu={handleContextMenu}
-      className={classnames('file-list__item', {})}
+      className={classnames('file-list__item', {
+        'file-list__item--large': large,
+      })}
     >
       <CardMedia thumbnail={thumbnail} />
 
@@ -94,9 +108,7 @@ function FileListItem(props) {
         </div>
         <div className="media__subtitle">
           {pending ? <div>Pending...</div> : <UriIndicator uri={uri} link />}
-          <div>
-            <DateTime timeAgo uri={uri} />
-          </div>
+          <div>{isChannel ? `${claimsInChannel} ${__('publishes')}` : <DateTime timeAgo uri={uri} />}</div>
         </div>
       </div>
 

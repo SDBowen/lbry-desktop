@@ -24,13 +24,16 @@ function usePersistedState(key, firstTimeDefault) {
 }
 
 function DiscoverPage(props) {
-  const { doFetchTrending, trending } = props;
+  const { doFetchTrending, trending, myTags } = props;
   const [personalSort, setPersonalSort] = usePersistedState('xyz', 'me');
   const [typeSort, setTypeSort] = usePersistedState('xxx', 'best');
   const [timeSort, setTimeSort] = usePersistedState('zzz', 'week');
 
   useEffect(() => {
     const options = {};
+    if (personalSort === 'me') {
+      // options.any_tags = myTags.map(tag => tag.name);
+    }
     if (typeSort === 'best') {
       options.order_by = ['trending_global', 'trending_mixed'];
     } else if (typeSort === 'new') {
@@ -48,7 +51,7 @@ function DiscoverPage(props) {
     }
 
     doFetchTrending(10, options);
-  }, [personalSort, typeSort, timeSort]);
+  }, [personalSort, typeSort, timeSort, doFetchTrending]);
 
   return (
     <Page>

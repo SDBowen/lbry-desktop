@@ -38,10 +38,12 @@ function App(props: Props) {
       <Header />
 
       <div className="main-wrapper">
-        <Router />
+        <div className="main-wrapper-2">
+          <Router />
+          <SideBar />
+        </div>
       </div>
 
-      <SideBar />
       <ModalRouter />
       {isEnhancedLayout && <Yrbl className="yrbl--enhanced" />}
     </div>

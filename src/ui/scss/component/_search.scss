@@ -15,29 +15,15 @@
 
   legend {
     &.search__legend--1 {
-      background-color: $lbry-teal-1;
+      background-color: $lbry-teal-4;
     }
 
     &.search__legend--2 {
-      background-color: $lbry-cyan-1;
+      background-color: $lbry-cyan-4;
     }
 
     &.search__legend--3 {
-      background-color: $lbry-pink-1;
-    }
-
-    [data-mode='dark'] & {
-      &.search__legend--1 {
-        background-color: $lbry-teal-5;
-      }
-
-      &.search__legend--2 {
-        background-color: $lbry-cyan-5;
-      }
-
-      &.search__legend--3 {
-        background-color: $lbry-pink-5;
-      }
+      background-color: $lbry-pink-4;
     }
   }
 

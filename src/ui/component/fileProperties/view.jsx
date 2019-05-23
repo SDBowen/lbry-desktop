@@ -22,10 +22,11 @@ type Props = {
 };
 
 function FileProperties(props: Props) {
-  const { uri, downloaded, claimIsMine, rewardedContentClaimIds, isSubscribed, isNew } = props;
+  const { claim, uri, downloaded, claimIsMine, rewardedContentClaimIds, isSubscribed, isNew } = props;
 
   const { claimId } = parseURI(uri);
   const isRewardContent = rewardedContentClaimIds.includes(claimId);
+  const tags = claim.value.tags;
 
   return (
     <React.Fragment>
@@ -36,18 +37,13 @@ function FileProperties(props: Props) {
         {isNew && <span className="badge badge--alert">{__('NEW')}</span>}
         <FilePrice hideFree uri={uri} />
       </div>
-      <div className="file-properties">
-        {['Bitcoin', 'LBRY', 'Science', 'History', 'Movie'].map(tag => {
-          if (Math.random() > 0.71) {
-            return (
-              <span key={tag} className="badge badge--tag">
-                {tag}
-              </span>
-            );
-          }
-          return null;
-        })}
-      </div>
+      {/* <div className="file-properties">
+        {tags.map(tag => (
+          <span key={tag} className="badge badge--tag">
+            {tag}
+          </span>
+        ))}
+      </div> */}
     </React.Fragment>
   );
 }
