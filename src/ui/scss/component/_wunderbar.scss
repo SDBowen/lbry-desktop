@@ -41,18 +41,13 @@
   height: 100%;
 
   align-items: center;
-  border-right: 1px solid $lbry-gray-1;
-  border-left: 1px solid $lbry-gray-1;
-  border-bottom: none;
-  border-top: none;
+  border: none;
   display: flex;
   justify-content: center;
   padding-left: var(--spacing-vertical-large);
   transition: background-color 0.2s;
 
   html[data-mode='dark'] & {
-    border-right: 1px solid;
-    border-left: 1px solid;
     color: $lbry-white;
 
     &:not(:focus) {
@@ -61,7 +56,6 @@
 
     &:focus {
       background-color: $lbry-gray-1;
-      border-color: $lbry-gray-1;
       color: $lbry-black;
     }
   }

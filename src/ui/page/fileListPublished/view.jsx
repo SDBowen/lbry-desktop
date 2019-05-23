@@ -23,7 +23,12 @@ class FileListPublished extends React.PureComponent<Props> {
     return (
       <Page notContained loading={fetching}>
         {claims && claims.length ? (
-          <FileList checkPending fileInfos={claims} sortByHeight sortBy={sortBy} page={PAGES.PUBLISHED} />
+          <div className="card">
+            <FileList
+              uris={claims.map(info => `lbry://${info.name}#${info.claim_id}`)}
+              header={<h1>Add Sort Here</h1>}
+            />
+          </div>
         ) : (
           <div className="main--empty">
             <section className="card card--section">

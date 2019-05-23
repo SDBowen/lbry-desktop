@@ -46,7 +46,8 @@
     "electron-log": "^2.2.12",
     "electron-updater": "^4.0.6",
     "express": "^4.16.4",
-    "keytar": "^4.4.1"
+    "keytar": "^4.4.1",
+    "react-use-gesture": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -118,7 +119,7 @@
     "jsmediatags": "^3.8.1",
     "json-loader": "^0.5.4",
     "lbry-format": "https://github.com/lbryio/lbry-format.git",
-    "lbry-redux": "lbryio/lbry-redux#02f6918238110726c0b3b4248c61a84ac0b969e3",
+    "lbry-redux": "lbryio/lbry-redux#54f9dcaaa10bd26cce84ea0a7e8b9e94504d05b5",
     "lbryinc": "lbryio/lbryinc#43d382d9b74d396a581a74d87e4c53105e04f845",
     "lint-staged": "^7.0.2",
     "localforage": "^1.7.1",
@@ -141,6 +142,7 @@
     "raw-loader": "^2.0.0",
     "rc-progress": "^2.0.6",
     "react": "^16.8.2",
+    "react-beautiful-dnd": "^11.0.3",
     "react-dom": "^16.8.2",
     "react-feather": "^1.0.8",
     "react-ga": "^2.5.7",
@@ -151,6 +153,7 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-simplemde-editor": "^4.0.0",
+    "react-spring": "^8.0.20",
     "react-tagcloud": "^1.4.0",
     "react-toggle": "^4.0.2",
     "redux": "^3.6.0",
@@ -190,7 +193,7 @@
     "yarn": "^1.3"
   },
   "lbrySettings": {
-    "lbrynetDaemonVersion": "0.37.0",
+    "lbrynetDaemonVersion": "0.38.0rc2",
     "lbrynetDaemonUrlTemplate": "https://github.com/lbryio/lbry/releases/download/vDAEMONVER/lbrynet-OSNAME.zip",
     "lbrynetDaemonDir": "static/daemon",
     "lbrynetDaemonFileName": "lbrynet"

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import FileTile from 'component/fileTile';
+import FileList from 'component/fileList';
 
 type Props = {
   uri: string,
@@ -51,14 +51,10 @@ export default class RecommendedContent extends React.PureComponent<Props> {
     const { recommendedContent, isSearching } = this.props;
 
     return (
-      <section className="media-group--list-recommended">
-        <span>Related</span>
-        {recommendedContent &&
-          recommendedContent.map(recommendedUri => (
-            <FileTile hideNoResult size="small" key={recommendedUri} uri={recommendedUri} />
-          ))}
+      <section className="card">
+        <FileList uris={recommendedContent} header={<span>Related</span>} />
         {recommendedContent && !recommendedContent.length && !isSearching && (
-          <div className="media__subtitle">No related content found</div>
+          <div className="help">No related content found</div>
         )}
       </section>
     );

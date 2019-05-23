@@ -23,6 +23,7 @@ function Paginate(props: Props) {
 
   function handleChangePage(newPageNumber: number) {
     if (onPageChange) {
+      console.log('fetch channel');
       onPageChange(newPageNumber);
     }
 

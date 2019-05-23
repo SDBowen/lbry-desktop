@@ -1,1 +1,11 @@
 @import '~@lbry/components/sass/badge/_index.scss';
+
+.badge--tag {
+  background-color: rgba($lbry-teal-5, 0.15);
+  color: darken($lbry-teal-5, 20%);
+}
+
+.badge--alert {
+  background-color: $lbry-red-2;
+  color: $lbry-white;
+}

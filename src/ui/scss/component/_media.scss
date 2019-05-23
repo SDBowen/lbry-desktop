@@ -8,79 +8,6 @@
   .media__title {
     margin-bottom: var(--spacing-vertical-small);
   }
-
-  .media__properties {
-    height: 1em;
-  }
-}
-
-//  M E D I A
-//  T I L E
-
-.media-tile {
-  @include mediaThumbHoverZoom;
-  display: flex;
-  font-size: 1.5rem;
-  position: relative;
-
-  &:not(:last-of-type) {
-    margin-bottom: var(--spacing-vertical-large);
-  }
-
-  .media__thumb {
-    flex-shrink: 0;
-    width: 20rem;
-  }
-
-  .media__info {
-    margin-left: var(--spacing-vertical-medium);
-  }
-}
-
-.media-tile--large {
-  font-size: 2rem;
-
-  .media__thumb {
-    width: 25rem;
-  }
-
-  .media__info {
-    margin-left: var(--spacing-vertical-large);
-  }
-
-  .media__subtext {
-    font-size: 0.7em;
-  }
-}
-
-.media-tile--small {
-  font-size: 1.2rem;
-
-  &:not(:last-of-type) {
-    margin-bottom: var(--spacing-vertical-medium);
-  }
-
-  .media__thumb {
-    width: 11em;
-  }
-
-  .media__title {
-    margin-bottom: var(--spacing-vertical-small);
-  }
-
-  .media__subtext:last-child {
-    margin-bottom: 0;
-  }
-
-  .media__properties {
-    bottom: 0.5rem;
-    left: calc(-100% - -2rem);
-    position: absolute;
-    padding: 0 var(--spacing-vertical-small);
-    border-radius: 5px;
-    background-color: $lbry-white;
-    color: $lbry-black;
-  }
 }
 
 //  M E D I A
@@ -140,6 +67,11 @@
   padding-bottom: 5px;
   opacity: 0.6;
   user-select: all;
+  height: 2rem;
+  position: absolute;
+  top: 2rem;
+  // transform: translateY(-2rem);
+  // margin-bottom: -50px;
 }
 
 .media__insufficient-credits {
@@ -285,44 +217,6 @@
   padding: var(--spacing-vertical-medium);
   margin: var(--spacing-vertical-medium) var(--spacing-vertical-large);
   white-space: normal;
-}
-
-//  M E D I A
-//  P R O P E R T I E S
-
-.media__properties {
-  display: flex;
-  align-items: center;
-
-  &:not(:empty) {
-    margin-top: var(--spacing-vertical-small);
-  }
-
-  > *:not(:last-child) {
-    margin-right: var(--spacing-vertical-small);
-  }
-}
-
-.media__properties--large {
-  display: inline-block;
-  vertical-align: top;
-
-  &:not(:empty) {
-    height: 2.55rem;
-    margin-top: 0px;
-
-    margin-bottom: var(--spacing-vertical-small);
-    padding-top: var(--spacing-vertical-small);
-  }
-
-  .badge {
-    align-items: center;
-    position: relative;
-
-    > *:not(:last-child) {
-      margin-right: var(--spacing-vertical-small);
-    }
-  }
 }
 
 //  M E D I A
@@ -525,9 +419,4 @@
       margin-left: var(--spacing-vertical-large);
     }
   }
-}
-
-.badge--alert {
-  background-color: $lbry-red-2;
-  color: $lbry-white;
 }

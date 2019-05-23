@@ -35,6 +35,10 @@ class WalletSend extends React.PureComponent<Props> {
   render() {
     const { balance } = this.props;
 
+    if (!balance) {
+      return null;
+    }
+
     return (
       <section className="card card--section">
         <header className="card__header">

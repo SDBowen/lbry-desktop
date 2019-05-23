@@ -11,6 +11,6 @@ const perform = dispatch => ({
 });
 
 export default connect(
-  select,
-  perform
+  null,
+  null
 )(FileList);

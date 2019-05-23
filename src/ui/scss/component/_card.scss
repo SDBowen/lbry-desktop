@@ -86,11 +86,6 @@
   p:not(:last-child) {
     margin-bottom: var(--spacing-vertical-medium);
   }
-
-  .badge {
-    bottom: -0.15rem;
-    position: relative;
-  }
 }
 
 //  C A R D
@@ -119,6 +114,7 @@
 .card__list {
   display: grid;
   grid-gap: var(--spacing-vertical-medium);
+  margin-top: var(--spacing-vertical-large);
 
   // Depending on screen width, the amount of items in
   // each row change and are auto-sized
@@ -135,21 +131,11 @@
     grid-template-columns: repeat(auto-fill, minmax(calc(100% / 7), 1fr));
   }
 
-  @media (min-width: 1051px) and (max-width: 1550px) {
+  @media (min-width: 1200px) and (max-width: 1550px) {
     grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), 1fr));
   }
 
-  @media (min-width: 901px) and (max-width: 1050px) {
-    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 5), 1fr));
-  }
-
-  @media (min-width: 751px) and (max-width: 900px) {
-    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 4), 1fr));
-  }
-
-  @media (max-width: 750px) {
-    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3), 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(calc(100% / 5), 1fr));
 }
 
 .card__list--rewards {
@@ -198,8 +184,7 @@
 
 .card__subtitle {
   @extend .help;
-  background-color: lighten($lbry-gray-1, 7%);
-  color: darken($lbry-gray-5, 30%);
+  color: darken($lbry-gray-5, 25%);
   font-size: 1.15rem;
   margin-bottom: var(--spacing-vertical-small);
 
@@ -210,6 +195,7 @@
   .badge {
     bottom: -0.12rem;
     position: relative;
+    margin-left: 0;
   }
 
   [data-mode='dark'] & {

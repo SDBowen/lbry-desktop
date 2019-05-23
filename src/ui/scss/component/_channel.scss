@@ -7,6 +7,8 @@ $metadata-z-index: 1;
   align-items: flex-end;
   box-sizing: content-box;
   color: $lbry-white;
+  border-top-left-radius: var(--card-radius);
+  border-top-right-radius: var(--card-radius);
 }
 
 .channel-cover__custom {
@@ -78,10 +80,16 @@ $metadata-z-index: 1;
 .channel__title {
   font-size: 3rem;
   font-weight: 800;
+  margin-right: var(--spacing-vertical-large);
 }
 
 .channel__url {
   font-size: 1.2rem;
   margin-top: -0.25rem;
   color: rgba($lbry-white, 0.75);
+}
+
+// TODO: rename
+.channel__data {
+  min-height: 10rem;
 }

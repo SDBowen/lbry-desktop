@@ -1,87 +1,111 @@
 // @flow
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Page from 'component/page';
-import CategoryList from 'component/categoryList';
-import FirstRun from 'component/firstRun';
-import Discovery from 'component/discoveryFirstRun';
+import Button from 'component/button';
+import { FormField } from 'component/common/form';
+import FileList from 'component/fileList';
+import TagsSelect from 'component/tagsSelect';
+import moment from 'moment';
 
 type Props = {
-  fetchFeaturedUris: () => void,
-  fetchRewardedContent: () => void,
-  fetchRewards: () => void,
-  fetchingFeaturedUris: boolean,
-  featuredUris: {},
+  trending: Array<string>,
+  doFetchTrending: (number, {}) => void,
 };
 
-class DiscoverPage extends React.PureComponent<Props> {
-  constructor() {
-    super();
-    this.continousFetch = undefined;
-  }
+function usePersistedState(key, firstTimeDefault) {
+  const defaultValue = localStorage.getItem(key) || firstTimeDefault;
+  const [value, setValue] = useState(defaultValue);
 
-  componentDidMount() {
-    const { fetchFeaturedUris, fetchRewardedContent, fetchRewards } = this.props;
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
 
-    fetchFeaturedUris();
-    fetchRewardedContent();
+  return [value, setValue];
+}
 
-    this.continousFetch = setInterval(() => {
-      fetchFeaturedUris();
-      fetchRewardedContent();
-      fetchRewards();
-    }, 1000 * 60 * 60);
-  }
+function DiscoverPage(props) {
+  const { doFetchTrending, trending, myTags } = props;
+  const [personalSort, setPersonalSort] = usePersistedState('xyz', 'me');
+  const [typeSort, setTypeSort] = usePersistedState('xxx', 'best');
+  const [timeSort, setTimeSort] = usePersistedState('zzz', 'week');
 
-  componentWillUnmount() {
-    this.clearContinuousFetch();
-  }
-
-  getCategoryLinkPartByCategory(category: string) {
-    const channelName = category.substr(category.indexOf('@'));
-
-    if (!channelName.includes('#')) {
-      return null;
+  useEffect(() => {
+    const options = {};
+    if (personalSort === 'me') {
+      options.any_tags = myTags.map(tag => tag.name);
+    }
+    if (typeSort === 'best') {
+      options.order_by = ['trending_global', 'trending_mixed'];
+    } else if (typeSort === 'new') {
+      options.order_by = ['publish_time'];
+    } else if (typeSort === 'top') {
+      options.order_by = ['effective_amount'];
+      if (timeSort !== 'all') {
+        const time = Math.floor(
+          moment()
+            .subtract(1, timeSort)
+            .unix()
+        );
+        options.publish_time = `>${time}`;
+      }
     }
 
-    return channelName;
-  }
+    doFetchTrending(10, options);
+  }, [personalSort, typeSort, timeSort, doFetchTrending]);
 
-  trimClaimIdFromCategory(category: string) {
-    return category.split('#')[0];
-  }
-
-  continousFetch: ?IntervalID;
-
-  clearContinuousFetch() {
-    if (this.continousFetch) {
-      clearInterval(this.continousFetch);
-      this.continousFetch = null;
-    }
-  }
-
-  render() {
-    const { featuredUris, fetchingFeaturedUris } = this.props;
-    const hasContent = typeof featuredUris === 'object' && Object.keys(featuredUris).length;
-    const failedToLoad = !fetchingFeaturedUris && !hasContent;
-
-    return (
-      <Page notContained isLoading={!hasContent && fetchingFeaturedUris} className="main--no-padding">
-        <FirstRun />
-        <Discovery />
-        {hasContent &&
-          Object.keys(featuredUris).map(category => (
-            <CategoryList
-              lazyLoad
-              key={category}
-              category={this.trimClaimIdFromCategory(category)}
-              uris={featuredUris[category]}
-              categoryLink={this.getCategoryLinkPartByCategory(category)}
-            />
-          ))}
-        {failedToLoad && <div className="empty">{__('Failed to load landing content.')}</div>}
-      </Page>
-    );
-  }
+  return (
+    <Page>
+      <div className="card">
+        <FileList
+          uris={trending}
+          title={'Trending For'}
+          injectedItem={personalSort === 'me' && <TagsSelect />}
+          sort={
+            <React.Fragment>
+              <FormField
+                type="select"
+                name="trending_sort"
+                value={typeSort}
+                onChange={e => setTypeSort(e.target.value)}
+              >
+                <option value="best">Best</option>
+                <option value="top">Top</option>
+                <option value="new">New</option>
+              </FormField>
+              {typeSort === 'top' && (
+                <FormField
+                  type="select"
+                  name="trending_time"
+                  value={timeSort}
+                  onChange={e => setTimeSort(e.target.value)}
+                >
+                  <option value="day">Today</option>
+                  <option value="week">Last Week</option>
+                  <option value="month">Last Month</option>
+                  <option value="year">Last Year</option>
+                  <option value="all">All Time</option>
+                </FormField>
+              )}
+            </React.Fragment>
+          }
+          header={
+            <React.Fragment>
+              <h1 className={`card__title--flex`}>{__('Trending For')}</h1>
+              <FormField
+                type="select"
+                name="trending_mefsdfaslkfa"
+                value={personalSort}
+                onChange={e => setPersonalSort(e.target.value)}
+              >
+                <option value="me">You</option>
+                <option value="all">Everyone</option>
+              </FormField>
+            </React.Fragment>
+          }
+        />
+      </div>
+    </Page>
+  );
 }
 
 export default DiscoverPage;

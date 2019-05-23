@@ -9,7 +9,7 @@ import {
   parseURI,
 } from 'lbry-redux';
 import { swapKeyAndValue } from 'util/swap-json';
-import { shuffleArray } from 'util/shuffleArray';
+import { shuffleArray } from 'util/shuffle-array';
 
 // Returns the entire subscriptions state
 const selectState = state => state.subscriptions || {};

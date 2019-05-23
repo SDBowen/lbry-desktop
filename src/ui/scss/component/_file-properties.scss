@@ -1,0 +1,9 @@
+.file-properties {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  & > * {
+    margin-left: var(--spacing-vertical-small);
+  }
+}

@@ -15,6 +15,10 @@
   }
 }
 
+// .right-sdide {
+//   width: var(--side-nav-width);
+// }
+
 .header__navigation {
   display: flex;
 
@@ -22,13 +26,14 @@
   // This contains the Lbry logo (home link) and forward/back arrows on desktop
   &:first-of-type {
     @media (min-width: 601px) {
-      width: calc(var(--side-nav-width) - 1px);
+      // width: calc(var(--side-nav-width) - 1px);
     }
   }
 }
 
 .header__navigation-arrows {
   display: flex;
+  margin-left: -1rem;
 
   .button__content {
     justify-content: center;
@@ -47,7 +52,8 @@
   }
 
   &:hover {
-    background-color: $lbry-gray-1;
+    color: $lbry-teal-5;
+    // background-color: $lbry-gray-1;
   }
 
   &.header__navigation-item--active {
@@ -72,6 +78,10 @@
   }
 }
 
+.header__navigation-arrows {
+  padding-left: var(--spacing-main-padding);
+}
+
 .header__navigation-item--back,
 .header__navigation-item--forward,
 .header__navigation-item--menu {
@@ -90,17 +100,23 @@
 }
 
 .header__navigation-item--right-action {
-  .button__content {
-    padding: 0 var(--spacing-vertical-large);
+  &:first-of-type {
+    margin-right: var(--spacing-vertical-xlarge);
   }
+
+  &:last-of-type {
+    margin-right: var(--spacing-main-padding);
+  }
+
+  margin-right: var(--spacing-vertical-large);
 }
 
 .header__navigation-item--right-action:not(:last-child),
 .header__navigation-item--lbry {
-  border-right: 1px solid $lbry-gray-1;
+  // border-right: 1px solid $lbry-gray-1;
 
   html[data-mode='dark'] & {
-    border-right: 1px solid $lbry-gray-5;
+    // border-right: 1px solid $lbry-gray-5;
   }
 }
 
